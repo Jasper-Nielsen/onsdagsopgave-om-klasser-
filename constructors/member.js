@@ -4,7 +4,7 @@ function construct(memberdata) {
     const MemberObject = {
         firstName: memberdata.firstName,
         lastName: memberdata.lastName,
-        active: memberdata.isActiveMember,
+        _active: memberdata.isActiveMember,
         competitive: memberdata.isCompetitive,
         birthday: new Date(memberdata.dateOfBirth).toLocaleString('da-DK', { dateStyle: 'short' }),
         email: memberdata.email,
@@ -24,6 +24,13 @@ function construct(memberdata) {
         },
         isSenior(){
             return this.age() >= 18;
+        },
+        get active(){
+            if(this._active === true){
+                return "active"
+            }else {
+                return "inactive"
+            }
         }
     }
     Object.defineProperties(MemberObject,{
